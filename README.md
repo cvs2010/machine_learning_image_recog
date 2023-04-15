@@ -1,5 +1,5 @@
 # DATA SCIENSE - MACHINE LEARNING - PYTHON TENSORFLOW - IMAGE RECOGNITION
-Repositório destinado ao desenvolvimento de Machine Learning em Linguagem Python utilizando a biblioteca TensorFlow para reconhecimento de imagens de gato ou cachorro.
+Repositório destinado ao desenvolvimento de Machine Learning em Linguagem Python utilizando a biblioteca TensorFlow para reconhecimento de imagens de gato ou cachorro. Desenvolvido no JupyterNotebokk do Google Colab.
 
 
 :iphone: Developer contacts
