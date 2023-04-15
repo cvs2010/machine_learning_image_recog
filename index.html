@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8" />
     <title>Modelo de Machine Learning implementado em Website</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0"></script>
-  </head>
-  <body>
+</head>
+<body>
     <h1>Image Recognition - Machine Learning Python Tensorflow - Binary Recognition for cats and dogs images</h1>
     <input type="file" onchange="handleFiles(this.files)">
     <div id="output"></div>
     <script>
-      async function loadModel() {
-        const model = await tf.loadLayersModel('modelo.h5');
-        return model;
-      }
+        async function loadModel() {
+            const model = await tf.loadLayersModel('modelo.h5');
+            return model;
+    }
 
-      async function handleFiles(files) {
+    async function handleFiles(files) {
         const model = await loadModel();
         const image = await loadImage(files[0]);
         const prediction = await predict(model, image);
         displayPrediction(prediction);
-      }
+    }
 
-      async function loadImage(file) {
+    async function loadImage(file) {
         return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = (event) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
             const img = new Image();
             img.onload = () => resolve(tf.browser.fromPixels(img));
             img.onerror = reject;
             img.src = event.target.result;
-          };
-          reader.readAsDataURL(file);
+        };
+        reader.readAsDataURL(file);
         });
-      }
+    }
 
-      async function predict(model, image) {
+    async function predict(model, image) {
         const xs = tf.image.resizeBilinear(image, [224, 224]).expandDims();
         const output = await model.predict(xs).data();
         return output;
-      }
+    }
 
-      function displayPrediction(prediction) {
+    function displayPrediction(prediction) {
         const outputDiv = document.getElementById('output');
         outputDiv.innerHTML = `Prediction: ${prediction}`;
-      }
+    }
     </script>
-  </body>
+</body>
 </html>
